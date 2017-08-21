@@ -7,4 +7,16 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST /' do
+    it 'redirects to posts index' do
+      post :create, params: { post: { title: 'test post title', message: 'test post message' } }
+      expect(response).to redirect_to(posts_path)
+    end
+
+    it 'creates a new post' do
+      post :create, params: { post: { title: 'test post title', message: 'test post message' } }
+      expect(Post.find_by(message: 'test post message')).to be
+    end
+  end
 end
