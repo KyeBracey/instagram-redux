@@ -1,6 +1,8 @@
-<%= @posts.each do |post| %>
-  <%= post.title %>
-  <%= post.message %>
+<% @posts.each do |post| %>
+  <div>
+    <%= simple_format(post.title) %>
+    <%= simple_format(post.message) %>
+  </div>
 <% end %>
 
 <%= link_to 'New post', new_post_path %>
